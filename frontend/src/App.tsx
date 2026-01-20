@@ -18,9 +18,17 @@ function App() {
   const { isDark } = useContext(ThemeContext);
 
   return (
-    <div className={`min-h-screen ${isDark ? 'bg-neutral-900 text-neutral-100' : 'bg-neutral-50 text-neutral-900'}`}>
-      <ToastContainer position="bottom-right" theme={isDark ? 'dark' : 'light'} />
-      <div className="px-4 sm:px-8 md:px-12 lg:px-20 xl:px-24 max-w-7xl mx-auto">
+    <div className={`min-h-screen ${isDark ? 'dark' : ''}`}>
+      {/* Animated background shapes */}
+      <div className="bg-shapes" />
+
+      <ToastContainer
+        position="bottom-right"
+        theme={isDark ? 'dark' : 'light'}
+        toastClassName="!bg-white dark:!bg-slate-800 !text-neutral-900 dark:!text-white !shadow-lg !border !border-neutral-100 dark:!border-neutral-700"
+      />
+
+      <div className="relative px-4 sm:px-8 md:px-12 lg:px-20 xl:px-24 max-w-7xl mx-auto">
         <Navbar />
         {showLogin && <Login />}
         <Routes>
