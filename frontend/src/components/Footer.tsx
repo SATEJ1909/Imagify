@@ -3,17 +3,17 @@ import assets from '../assets/assets'
 
 const Footer = () => {
   return (
-    <div className='flex items-center justify-between gap-4 py-3 mt-20'>
-      
-      <img src={assets.logo} alt="" width={150} />
-      <p className='flex-1 border-l border-gray-400 pl-4 text-sm text-gray-500 max-sm:hidden'>Copyright @Satej.dev | All Rights Reserved</p>
-
-      <div className='flex gap-2.5'>
-        <img src={assets.facebook_icon} alt=""  width={35}/>
-         <img src={assets.twitter_icon} alt=""  width={35}/>
-          <img src={assets.instagram_icon} alt=""  width={35}/>
+    <footer className='py-12'>
+      <div className='flex flex-col items-center gap-4'>
+        <img src={assets.logo} alt='' width={150} />
+        <div className='flex gap-3'>
+          <img src={assets.facebook_icon} alt='' width={28}/>
+          <img src={assets.twitter_icon} alt='' width={28}/>
+          <img src={assets.instagram_icon} alt='' width={28}/>
+        </div>
+        <p className='text-sm text-gray-500'>© {new Date().getFullYear()} Satej.dev — All rights reserved</p>
       </div>
-    </div>
+    </footer>
   )
 }
 

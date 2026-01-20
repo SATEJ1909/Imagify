@@ -1,72 +1,80 @@
 
 import { useContext } from 'react'
 import assets from '../assets/assets'
-import {motion} from 'framer-motion'
-import { AppContext } from '../context/AppContext'
+import { motion } from 'framer-motion'
+import { AppContext, type AppContextValue } from '../context/AppContext'
 import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
 
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
-  const {user , setShowLogin} = useContext(AppContext);
-  const onClickHandler = () => {
-    if(user){
-      navigate('/result')
-    }else{
-      setShowLogin(true);
-    }
-  }
+	const { user, setShowLogin } = useContext(AppContext) as AppContextValue;
+	const onClickHandler = () => {
+		if (user) {
+			navigate('/result')
+		} else {
+			setShowLogin(true);
+		}
+	}
 
-  return (
-    <motion.div className='flex flex-col justify-center items-center text-center py-20'
-    initial={{opacity:0.2 , y:100}}
-    transition={{duration:1}}
-    whileInView={{opacity : 1 , y : 0}}
-    viewport={{once : true}}
-    >
-      <motion.div  className='text-stone-500 inline-flex text-center gap-2 bg-white px-6 py-1 rounded-full border border-neutral-500'
-      initial={{opacity:0 , y:-20}}
-      transition={{delay : 0.4, duration:2}}
-      animate={{opacity:1 , y:0}}
-    >
-        <p >Best text to Image Generator</p>
-        <img src={assets.star_icon} alt="" />
-      </motion.div>
+	return (
+		<motion.section className='grid grid-cols-1 lg:grid-cols-2 items-center gap-12 py-16 lg:py-24'
+			initial={{ opacity: 0.2, y: 100 }}
+			transition={{ duration: 1 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			viewport={{ once: true }}
+		>
+			<div>
+				<motion.div className='inline-flex items-center gap-2 bg-white border border-neutral-300 px-4 py-1 rounded-full text-neutral-600'
+					initial={{ opacity: 0, y: -20 }}
+					transition={{ delay: 0.2, duration: 0.8 }}
+					animate={{ opacity: 1, y: 0 }}
+				>
+					<p>AI image generator</p>
+					<img src={assets.star_icon} alt='' />
+				</motion.div>
 
-      <motion.h1 className='text-4xl max-w-[300px] sm:text-7xl sm:max-w-[590px] mx-auto mt-10 text-center'
-      initial={{opacity:0 , y:-20}}
-      transition={{duration:1}}
-      animate={{opacity:1 , y:0}}
-      >Turn text to <span className='text-blue-600'
-      >image</span>, in seconds.</motion.h1>
-      <motion.p className='text-center max-w-xl mx-auto mt-5'
-      initial={{opacity:0 , y:20}}
-      transition={{delay : 0.6, duration:2}}
-      animate={{opacity:1 , y:0}}
-      >Unleash your creativity with AI , Turn your imagination into visual art in seconds - jus type , and watch the magic happen</motion.p>
+				<motion.h1 className='text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-tight mt-6 text-balance'
+					initial={{ opacity: 0, y: -10 }}
+					transition={{ duration: 0.8 }}
+					animate={{ opacity: 1, y: 0 }}
+				>
+					Create stunning images from text, instantly
+				</motion.h1>
+				<motion.p className='text-lg text-neutral-600 mt-5 max-w-xl'
+					initial={{ opacity: 0, y: 10 }}
+					transition={{ delay: 0.3, duration: 0.8 }}
+					animate={{ opacity: 1, y: 0 }}
+				>
+					Turn your ideas into beautiful visuals in seconds. No design skills required.
+				</motion.p>
 
-      <motion.button onClick={onClickHandler}
-      className='sm:text-lg text-white bg-black w-auto mt-8 px-12 py-2.5 flex items-center gap-2 rounded-full cursor-pointer'
-      whileHover={{scale:1.05}}
-      whileTap={{scale:0.95}}
-      initial={{opacity : 0}}
-      animate={{opacity : 1}}
-      transition={{default : {duration : 0.5} , opacity : {delay : 0.8 , duration : 1}}}
-      >
-        Generate Images
-        <img  className='h-6' src={assets.star_group} alt="" />
-      </motion.button>
+				<div className='mt-8 flex items-center gap-3'>
+					<motion.button onClick={onClickHandler}
+						className='sm:text-lg text-white bg-black px-8 py-3 rounded-full cursor-pointer'
+						whileHover={{ scale: 1.03 }}
+						whileTap={{ scale: 0.98 }}
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						transition={{ default: { duration: 0.4 }, opacity: { delay: 0.5, duration: 0.8 } }}
+					>
+						Generate images
+					</motion.button>
+					<button onClick={() => navigate('/buy')} className='px-8 py-3 rounded-full border border-neutral-300 text-neutral-800 hover:bg-neutral-100'>See pricing</button>
+				</div>
+			</div>
 
-      <div className='flex flex-wrap justify-center mt-16 gap-3'>
-        {Array(6).fill('').map((item , index) =>(
-            <img className='rounded hover:scale-105 transition-all duration-300 cursor-pointer max-sm:w-10' src={ index % 2 === 0 ? assets.sample_img_2 : assets.sample_img_1} alt="" key={index} width={70}/>
-        ))}
-      </div>
-
-      <p className='mt-2 text-neutral-600'>Geneated Images from Imagify</p>
-    </motion.div>
-  )
+			<div className='grid grid-cols-3 gap-3 max-w-md lg:max-w-none mx-auto lg:mx-0'>
+				<img className='rounded-lg hover:scale-[1.02] transition-all duration-300' src={assets.sample_img_1} alt='' />
+				<img className='rounded-lg hover:scale-[1.02] transition-all duration-300' src={assets.sample_img_2} alt='' />
+				<img className='rounded-lg hover:scale-[1.02] transition-all duration-300' src={assets.sample_img_1} alt='' />
+				<img className='rounded-lg hover:scale-[1.02] transition-all duration-300' src={assets.sample_img_2} alt='' />
+				<img className='rounded-lg hover:scale-[1.02] transition-all duration-300' src={assets.sample_img_1} alt='' />
+				<img className='rounded-lg hover:scale-[1.02] transition-all duration-300' src={assets.sample_img_2} alt='' />
+			</div>
+		</motion.section>
+	)
 }
 
 export default Header
