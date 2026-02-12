@@ -58,7 +58,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
     const navigate = useNavigate();
 
-    const backendUrl = import.meta.env.VITE_BACKEND_URL as string;
+    const backendUrl = "https://imagify-1-g4c8.onrender.com"
 
     const loadCreditData = async (): Promise<void> => {
         if (!token) return;
